@@ -1,195 +1,114 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Joguinho para meu amorzinho Pedro</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap">
-<style>
-body {
-    background-image: url('https://i.imgur.com/CB1Mkg4.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: 'Comic Neue', cursive;
-    color: white;
-    text-shadow: 2px 2px 4px #000;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Quiz da Thay ✨</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://github.com/thayhatakedev/thaysemoqfazer/blob/main/GITHUB.jpg?raw=true');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Comfortaa', cursive;
+            color: white;
+            overflow-x: hidden;
+        }
 
-.container {
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 90%;
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgb(255, 0, 255);
-    animation: pulse 2s infinite;
-}
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            width: 90%;
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
+            animation: pulse 2s infinite;
+        }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 20px rgb(255, 0, 255); }
-  50% { box-shadow: 0 0 40px rgb(255, 192, 203); }
-  100% { box-shadow: 0 0 20px rgb(255, 0, 255); }
-}
+        h1 {
+            margin-bottom: 10px;
+        }
 
-button {
-    background-color: pink;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: transform 0.2s;
-}
+        button {
+            background-color: #b30059;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            margin: 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s;
+            font-size: 16px;
+        }
 
-button:hover {
-    transform: scale(1.1);
-    background-color: rgb(255, 182, 193);
-}
+        button:hover {
+            background-color: #ff66a3;
+            transform: scale(1.1);
+        }
 
-h1, h2 {
-    text-align: center;
-}
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(255, 192, 203, 1);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
+            }
+        }
 
-.question {
-    font-size: 20px;
-}
+        /* Corações flutuando */
+        .heart {
+            position: fixed;
+            color: pink;
+            font-size: 25px;
+            animation: float 8s linear infinite;
+            z-index: 0;
+        }
 
-.options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hidden {
-    display: none;
-}
-
-footer {
-    text-align: center;
-    margin: 20px;
-    font-size: 14px;
-}
-
-.glitter {
-    animation: glitter 1s infinite alternate;
-}
-
-@keyframes glitter {
-    from { text-shadow: 0 0 10px pink; }
-    to { text-shadow: 0 0 20px white; }
-}
-</style>
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<audio autoplay loop>
-  <source src="https://dl.sndup.net/zf9n/Die%20With%20A%20Smile.mp3" type="audio/mp3">
-</audio>
-
-<div class="container">
-    <h1 class="glitter">✨ Quiz da Thay ✨</h1>
-    <h2>Feito com amor pro meu amorzinho Pedro ❤</h2>
-
-    <div id="quiz">
-        <div id="question" class="question"></div>
-        <div id="options" class="options"></div>
-        <div id="result" class="hidden"></div>
-        <button id="nextButton" class="hidden">Próxima</button>
+    <div class="container">
+        <h1>✨ Quiz da Thay ✨</h1>
+        <p>Feito com amor pro meu amorzinho Pedro ♡</p>
+        <p>Quem é o melhor amigo do Naruto?</p>
+        <button>Sasuke</button>
+        <button>Shikamaru</button>
+        <button>Kiba</button>
+        <button>Gaara</button>
+        <button>Neji</button>
     </div>
-</div>
 
-<footer>Feito pela Thay com amor e glitter ✨</footer>
+    <p style="text-align:center; color:white;">Feito pela Thay com amor e glitter ✨</p>
 
-<script>
-const questions = [
-    {question: "Qual o nome completo do Naruto?", options: ["Naruto Hatake", "Naruto Uchiha", "Naruto Uzumaki", "Naruto Hyuga", "Naruto Sarutobi"], answer: 2},
-    {question: "Quem é o sensei do time 7?", options: ["Iruka", "Asuma", "Gai", "Kakashi", "Jiraiya"], answer: 3},
-    {question: "Quem é o melhor amigo do Naruto?", options: ["Sasuke", "Shikamaru", "Kiba", "Gaara", "Neji"], answer: 0},
-    {question: "Quem matou o Itachi?", options: ["Naruto", "Kakashi", "Madara", "Sasuke", "Obito"], answer: 3},
-    {question: "Qual é o animal da invocação da Sakura?", options: ["Rã", "Lesma", "Cachorro", "Cobra", "Águia"], answer: 1},
-    {question: "Qual é o sobrenome do Sasuke?", options: ["Uzumaki", "Hatake", "Uchiha", "Haruno", "Nara"], answer: 2},
-    {question: "Quem é Jinchuuriki do Shukaku?", options: ["Naruto", "Killer Bee", "Gaara", "Yugito", "Roshi"], answer: 2},
-    {question: "Quem ensinou Rasengan pro Naruto?", options: ["Jiraiya", "Kakashi", "Minato", "Iruka", "Yamato"], answer: 0},
-    {question: "Qual o nome da mãe do Naruto?", options: ["Kushina", "Sakura", "Tsunade", "Hinata", "Kurenai"], answer: 0},
-    {question: "Quem era o Hokage antes do Kakashi?", options: ["Hiruzen", "Minato", "Tsunade", "Danzo", "Naruto"], answer: 2},
-    {question: "Quantos portões Gai pode abrir?", options: ["3", "5", "6", "8", "10"], answer: 3},
-    {question: "Qual o clã da Hinata?", options: ["Uchiha", "Uzumaki", "Hyuga", "Nara", "Akimichi"], answer: 2},
-    {question: "Quem é o irmão do Itachi?", options: ["Naruto", "Gaara", "Sasuke", "Kiba", "Shikamaru"], answer: 2},
-    {question: "Quem criou o Chidori?", options: ["Sasuke", "Kakashi", "Naruto", "Itachi", "Madara"], answer: 1},
-    {question: "Quem é conhecido como o ninja mais forte?", options: ["Naruto", "Madara", "Hashirama", "Sasuke", "Guy"], answer: 2},
-    {question: "Quem é o portador do Rinnegan?", options: ["Kakashi", "Pain", "Itachi", "Sasuke", "Naruto"], answer: 1},
-    {question: "Qual é o nome da técnica proibida usada pelo Orochimaru?", options: ["Amaterasu", "Tsukuyomi", "Edo Tensei", "Chidori", "Rasengan"], answer: 2},
-    {question: "Quem matou o Neji?", options: ["Madara", "Kaguya", "Obito", "Zetsu", "Ataque da aliança inimiga"], answer: 4},
-    {question: "Quem casou com o Naruto?", options: ["Sakura", "Ino", "Tenten", "Hinata", "Temari"], answer: 3},
-    {question: "Quem é o pai do Sasuke?", options: ["Fugaku", "Minato", "Hiruzen", "Asuma", "Shikaku"], answer: 0},
-    {question: "Qual é o nome da vila do Naruto?", options: ["Vila da Areia", "Vila da Névoa", "Vila da Folha", "Vila da Pedra", "Vila da Nuvem"], answer: 2},
-    {question: "Quem era o melhor amigo do Obito?", options: ["Madara", "Kakashi", "Naruto", "Sasuke", "Minato"], answer: 1},
-    {question: "Quem foi o primeiro Hokage?", options: ["Hashirama", "Tobirama", "Hiruzen", "Minato", "Kakashi"], answer: 0},
-    {question: "Quem tem o Byakugan?", options: ["Naruto", "Sasuke", "Hinata", "Sakura", "Itachi"], answer: 2},
-    {question: "Qual é o nome do irmão do Killer Bee?", options: ["A", "B", "C", "D", "Z"], answer: 0},
-    {question: "Quem é o líder da Akatsuki (aparente)?", options: ["Itachi", "Kisame", "Pain", "Sasori", "Deidara"], answer: 2},
-    {question: "Quem tem o Mangekyou Sharingan Eterno?", options: ["Itachi", "Kakashi", "Sasuke", "Shisui", "Madara"], answer: 2},
-    {question: "Quem é conhecido como o 'ninja copiador'?", options: ["Naruto", "Sasuke", "Kakashi", "Itachi", "Shikamaru"], answer: 2},
-    {question: "Qual é a bijuu de nove caudas?", options: ["Shukaku", "Matatabi", "Kurama", "Gyuki", "Isobu"], answer: 2}
-];
-
-let currentQuestion = 0;
-let score = 0;
-
-const questionEl = document.getElementById('question');
-const optionsEl = document.getElementById('options');
-const resultEl = document.getElementById('result');
-const nextButton = document.getElementById('nextButton');
-
-function showQuestion() {
-    const q = questions[currentQuestion];
-    questionEl.textContent = q.question;
-    optionsEl.innerHTML = '';
-    q.options.forEach((option, index) => {
-        const btn = document.createElement('button');
-        btn.textContent = option;
-        btn.onclick = () => checkAnswer(index);
-        optionsEl.appendChild(btn);
-    });
-}
-
-function checkAnswer(selected) {
-    const q = questions[currentQuestion];
-    if (selected === q.answer) {
-        score++;
-    }
-    nextButton.classList.remove('hidden');
-}
-
-nextButton.onclick = () => {
-    currentQuestion++;
-    if (currentQuestion < questions.length) {
-        showQuestion();
-        nextButton.classList.add('hidden');
-    } else {
-        showResult();
-    }
-};
-
-function showResult() {
-    questionEl.classList.add('hidden');
-    optionsEl.classList.add('hidden');
-    nextButton.classList.add('hidden');
-    resultEl.classList.remove('hidden');
-    resultEl.innerHTML = `
-        <h2>✨ Você acertou ${score} de ${questions.length} perguntas! ✨</h2>
-        ${score === questions.length ? "<p>vc sempre vai ser meu jogador de roblox favorito datebayo❤❤❤❤❤</p>" : "<p>Foi bem, mas tente de novo pra ser meu ninja favorito!</p>"}
-    `;
-}
-
-showQuestion();
-</script>
-
+    <!-- Script dos corações -->
+    <script>
+        const heartCount = 20;
+        for (let i = 0; i < heartCount; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+            heart.innerHTML = '❤';
+            document.body.appendChild(heart);
+        }
+    </script>
 </body>
 </html>
