@@ -1,157 +1,207 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✨ Joguinho para meu amôrzio Pedro ✨</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: url('https://github.com/thayhatakedev/thaysemoqfazer/blob/main/GITHUB.jpg?raw=true') no-repeat center center fixed;
-        background-size: cover;
-        font-family: 'Comfortaa', cursive;
-        color: white;
-        overflow-x: hidden;
-    }
-    .container {
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 90%;
-        max-width: 600px;
-        margin: 60px auto;
-        padding: 30px;
-        border-radius: 20px;
-        text-align: center;
-        box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
-        animation: pulse 2s infinite;
-    }
-    h1 {
-        margin-bottom: 10px;
-    }
-    button {
-        background-color: #b30059;
-        border: none;
-        color: white;
-        padding: 10px 25px;
-        margin: 10px;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: transform 0.3s ease, background-color 0.3s;
-        font-size: 16px;
-    }
-    button:hover {
-        background-color: #ff66a3;
-        transform: scale(1.1);
-    }
-    @keyframes pulse {
-        0% { box-shadow: 0 0 30px rgba(255, 192, 203, 0.8); }
-        50% { box-shadow: 0 0 50px rgba(255, 192, 203, 1); }
-        100% { box-shadow: 0 0 30px rgba(255, 192, 203, 0.8); }
-    }
-    .heart {
-        position: fixed;
-        color: pink;
-        font-size: 25px;
-        animation: float 8s linear infinite;
-        z-index: 0;
-    }
-    @keyframes float {
-        0% { transform: translateY(100vh) translateX(0); opacity: 1; }
-        100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Quiz da Thay ✨</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://github.com/thayhatakedev/thaysemoqfazer/blob/main/GITHUB.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Comic Sans MS', cursive;
+            color: white;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            transform: rotate(45deg);
+            animation: float 6s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px pink;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .options button {
+            background-color: #d60050;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .options button:hover {
+            background-color: #ff66a3;
+        }
+
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>✨ Joguinho para meu amôrzio Pedro ✨</h1>
-    <p id="pergunta"></p>
-    <div id="opcoes"></div>
-    <p id="pontuacao"></p>
-</div>
+    <div class="container">
+        <h1>✨ Joguinho para meu amôrzio Pedro ✨</h1>
+        <h2>Feito com amor pela Thay ❤</h2>
 
-<p style="text-align:center; color:white;">Feito pela Thay com amor ✨❤</p>
+        <div class="quiz">
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
 
-<script>
-    const perguntas = [
-        {
-            pergunta: "Qual é o sobrenome do Naruto?",
-            opcoes: ["Uzumaki", "Uchiha", "Hatake", "Hyuga", "Nara"],
-            correta: 0
-        },
-        {
-            pergunta: "Quem é o sensei do time 7?",
-            opcoes: ["Iruka", "Kakashi", "Jiraiya", "Yamato", "Asuma"],
-            correta: 1
-        },
-        {
-            pergunta: "Qual é o animal que representa o contrato de invocação do Jiraiya?",
-            opcoes: ["Cobra", "Lesma", "Sapo", "Corvo", "Cachorro"],
-            correta: 2
-        },
-        {
-            pergunta: "Quem possui o Byakugan?",
-            opcoes: ["Naruto", "Sasuke", "Hinata", "Kiba", "Sakura"],
-            correta: 2
-        },
-        {
-            pergunta: "Qual é o nome do irmão do Sasuke?",
-            opcoes: ["Madara", "Shisui", "Itachi", "Obito", "Fugaku"],
-            correta: 2
+    <footer>Feito pela Thay com amor ✨❤</footer>
+
+    <script>
+        const questions = [
+            {
+                question: "Quem é o melhor amigo do Naruto?",
+                options: ["Sasuke", "Shikamaru", "Kiba", "Gaara", "Neji"],
+                answer: 1
+            },
+            {
+                question: "Quem é o sensei do Time 7?",
+                options: ["Iruka", "Asuma", "Kakashi", "Gai", "Jiraiya"],
+                answer: 2
+            },
+            {
+                question: "Quem tem o Sharingan?",
+                options: ["Naruto", "Kiba", "Sasuke", "Sakura", "Shino"],
+                answer: 2
+            },
+            {
+                question: "Qual é o nome da raposa de 9 caudas?",
+                options: ["Kurama", "Matatabi", "Shukaku", "Gyuki", "Son Goku"],
+                answer: 0
+            },
+            {
+                question: "Quem é o Hokage no final de Naruto Shippuden?",
+                options: ["Tsunade", "Kakashi", "Naruto", "Sasuke", "Jiraiya"],
+                answer: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question').textContent = q.question;
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+            q.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.onclick = () => checkAnswer(index);
+                optionsDiv.appendChild(button);
+            });
         }
-        // Você pode adicionar mais perguntas aqui!
-    ];
 
-    let indice = 0;
-    let pontos = 0;
-
-    const perguntaEl = document.getElementById("pergunta");
-    const opcoesEl = document.getElementById("opcoes");
-    const pontuacaoEl = document.getElementById("pontuacao");
-
-    function carregarPergunta() {
-        if (indice >= perguntas.length) {
-            perguntaEl.innerHTML = "Acabouuu!! Você fez " + pontos + " de " + perguntas.length + " pontos.<br><br>❤ Vc sempre vai ser meu jogador de Roblox favorito datebayo ❤❤❤❤❤";
-            opcoesEl.innerHTML = "";
-            pontuacaoEl.innerHTML = "";
-            return;
+        function checkAnswer(selected) {
+            if (selected === questions[currentQuestion].answer) {
+                score++;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
         }
 
-        const atual = perguntas[indice];
-        perguntaEl.innerHTML = atual.pergunta;
-        opcoesEl.innerHTML = "";
+        function showResult() {
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('options').style.display = 'none';
+            document.getElementById('result').textContent =
+                Você acertou ${score} de ${questions.length} perguntas!;
+        }
 
-        atual.opcoes.forEach((opcao, i) => {
-            const botao = document.createElement("button");
-            botao.innerText = opcao;
-            botao.onclick = () => {
-                if (i === atual.correta) {
-                    pontos++;
-                }
-                indice++;
-                carregarPergunta();
-            };
-            opcoesEl.appendChild(botao);
-        });
+        showQuestion();
 
-        pontuacaoEl.innerHTML = Pontuação: ${pontos};
-    }
+        // Corações flutuando
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
 
-    carregarPergunta();
-</script>
-
-<script>
-    const heartCount = 20;
-    for (let i = 0; i < heartCount; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (5 + Math.random() * 5) + 's';
-        heart.innerHTML = '❤';
-        document.body.appendChild(heart);
-    }
-</script>
-
+        setInterval(createHeart, 500);
+    </script>
 </body>
 </html>
