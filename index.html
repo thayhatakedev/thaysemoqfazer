@@ -1,114 +1,157 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Quiz da Thay ✨</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-image: url('https://github.com/thayhatakedev/thaysemoqfazer/blob/main/GITHUB.jpg?raw=true');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: 'Comfortaa', cursive;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        .container {
-            background-color: rgba(0, 0, 0, 0.8);
-            width: 90%;
-            max-width: 600px;
-            margin: 60px auto;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
-            animation: pulse 2s infinite;
-        }
-
-        h1 {
-            margin-bottom: 10px;
-        }
-
-        button {
-            background-color: #b30059;
-            border: none;
-            color: white;
-            padding: 10px 25px;
-            margin: 10px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #ff66a3;
-            transform: scale(1.1);
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
-            }
-            50% {
-                box-shadow: 0 0 50px rgba(255, 192, 203, 1);
-            }
-            100% {
-                box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
-            }
-        }
-
-        /* Corações flutuando */
-        .heart {
-            position: fixed;
-            color: pink;
-            font-size: 25px;
-            animation: float 8s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(50px);
-                opacity: 0;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Joguinho para meu amôrzio Pedro ✨</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: url('https://github.com/thayhatakedev/thaysemoqfazer/blob/main/GITHUB.jpg?raw=true') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Comfortaa', cursive;
+        color: white;
+        overflow-x: hidden;
+    }
+    .container {
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 90%;
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
+        animation: pulse 2s infinite;
+    }
+    h1 {
+        margin-bottom: 10px;
+    }
+    button {
+        background-color: #b30059;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        margin: 10px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #ff66a3;
+        transform: scale(1.1);
+    }
+    @keyframes pulse {
+        0% { box-shadow: 0 0 30px rgba(255, 192, 203, 0.8); }
+        50% { box-shadow: 0 0 50px rgba(255, 192, 203, 1); }
+        100% { box-shadow: 0 0 30px rgba(255, 192, 203, 0.8); }
+    }
+    .heart {
+        position: fixed;
+        color: pink;
+        font-size: 25px;
+        animation: float 8s linear infinite;
+        z-index: 0;
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh) translateX(0); opacity: 1; }
+        100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>✨ Quiz da Thay ✨</h1>
-        <p>Feito com amor pro meu amorzinho Pedro ♡</p>
-        <p>Quem é o melhor amigo do Naruto?</p>
-        <button>Sasuke</button>
-        <button>Shikamaru</button>
-        <button>Kiba</button>
-        <button>Gaara</button>
-        <button>Neji</button>
-    </div>
 
-    <p style="text-align:center; color:white;">Feito pela Thay com amor e glitter ✨</p>
+<div class="container">
+    <h1>✨ Joguinho para meu amôrzio Pedro ✨</h1>
+    <p id="pergunta"></p>
+    <div id="opcoes"></div>
+    <p id="pontuacao"></p>
+</div>
 
-    <!-- Script dos corações -->
-    <script>
-        const heartCount = 20;
-        for (let i = 0; i < heartCount; i++) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (5 + Math.random() * 5) + 's';
-            heart.innerHTML = '❤';
-            document.body.appendChild(heart);
+<p style="text-align:center; color:white;">Feito pela Thay com amor ✨❤</p>
+
+<script>
+    const perguntas = [
+        {
+            pergunta: "Qual é o sobrenome do Naruto?",
+            opcoes: ["Uzumaki", "Uchiha", "Hatake", "Hyuga", "Nara"],
+            correta: 0
+        },
+        {
+            pergunta: "Quem é o sensei do time 7?",
+            opcoes: ["Iruka", "Kakashi", "Jiraiya", "Yamato", "Asuma"],
+            correta: 1
+        },
+        {
+            pergunta: "Qual é o animal que representa o contrato de invocação do Jiraiya?",
+            opcoes: ["Cobra", "Lesma", "Sapo", "Corvo", "Cachorro"],
+            correta: 2
+        },
+        {
+            pergunta: "Quem possui o Byakugan?",
+            opcoes: ["Naruto", "Sasuke", "Hinata", "Kiba", "Sakura"],
+            correta: 2
+        },
+        {
+            pergunta: "Qual é o nome do irmão do Sasuke?",
+            opcoes: ["Madara", "Shisui", "Itachi", "Obito", "Fugaku"],
+            correta: 2
         }
-    </script>
+        // Você pode adicionar mais perguntas aqui!
+    ];
+
+    let indice = 0;
+    let pontos = 0;
+
+    const perguntaEl = document.getElementById("pergunta");
+    const opcoesEl = document.getElementById("opcoes");
+    const pontuacaoEl = document.getElementById("pontuacao");
+
+    function carregarPergunta() {
+        if (indice >= perguntas.length) {
+            perguntaEl.innerHTML = "Acabouuu!! Você fez " + pontos + " de " + perguntas.length + " pontos.<br><br>❤ Vc sempre vai ser meu jogador de Roblox favorito datebayo ❤❤❤❤❤";
+            opcoesEl.innerHTML = "";
+            pontuacaoEl.innerHTML = "";
+            return;
+        }
+
+        const atual = perguntas[indice];
+        perguntaEl.innerHTML = atual.pergunta;
+        opcoesEl.innerHTML = "";
+
+        atual.opcoes.forEach((opcao, i) => {
+            const botao = document.createElement("button");
+            botao.innerText = opcao;
+            botao.onclick = () => {
+                if (i === atual.correta) {
+                    pontos++;
+                }
+                indice++;
+                carregarPergunta();
+            };
+            opcoesEl.appendChild(botao);
+        });
+
+        pontuacaoEl.innerHTML = Pontuação: ${pontos};
+    }
+
+    carregarPergunta();
+</script>
+
+<script>
+    const heartCount = 20;
+    for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+        heart.innerHTML = '❤';
+        document.body.appendChild(heart);
+    }
+</script>
+
 </body>
 </html>
